@@ -65,10 +65,10 @@ ng serve
 
 ## Future Enhancements
 
-1.GPS-based location validation
-2.Mobile application support
-3.Cloud deployment
-4.Advanced analytics dashboard
+1. GPS-based location validation.
+2. Mobile application support.
+3. Cloud deployment.
+4. Advanced analytics dashboard.
 
 ## Contributing
 Contributions are welcome! Feel free to fork the project, make improvements, and create pull requests.
