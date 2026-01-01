@@ -74,7 +74,7 @@ ng serve
 Contributions are welcome! Feel free to fork the project, make improvements, and create pull requests.
 
 ## Contact
-Naveenharshavarthini Ganesan
+Created By Naveenharshavarthini Ganesan
 
 GitHub: [https://github.com/Naveenharshavarthini](https://github.com/Naveenharshavarthini)  
 LinkedIn: [https://www.linkedin.com/in/naveenharshavarthini-ganesan-4047a6311/](https://www.linkedin.com/in/naveenharshavarthini-ganesan-4047a6311/)
