@@ -16,10 +16,10 @@ It ensures that attendance is recorded only when the user is physically present 
 - Option to export attendance reports (e.g., CSV/Excel) for academic.
 
 ## Tech Stack
-Frontend: Angular, HTML, CSS, Bootstrap
-Backend: Node.js with TypeScript, TensorFlow/TensorFlow.js SDK
-​Database: MongoDB
-​IDE & Tools: Visual Studio Code, Chrome/Safari browser
+- Frontend: Angular, HTML, CSS, Bootstrap
+- Backend: Node.js with TypeScript, TensorFlow/TensorFlow.js SDK
+- Database: MongoDB
+- IDE & Tools: Visual Studio Code, Chrome/Safari browser
 
 ### Project Structure
 ```
