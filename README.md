@@ -7,13 +7,13 @@ It ensures that attendance is recorded only when the user is physically present 
 
 
 ## Features
--Automatic face detection and recognition for each user.
--Geolocation check to ensure user is within an authorized radius before marking attendance.
-​-Secure login for admin/teacher to view and manage attendance records.
-​-Real-time attendance marking with date and time stamps.
-​-Attendance history view per user, per day, and per subject/session.
-​-Simple dashboard interface for monitoring present/absent status.
-​-Option to export attendance reports (e.g., CSV/Excel) for academic.
+- Automatic face detection and recognition for each user.
+- Geolocation check to ensure user is within an authorized radius before marking attendance.
+​- Secure login for admin/teacher to view and manage attendance records.
+​- Real-time attendance marking with date and time stamps.
+​- Attendance history view per user, per day, and per subject/session.
+​- Simple dashboard interface for monitoring present/absent status.
+​- Option to export attendance reports (e.g., CSV/Excel) for academic.
 
 ## Tech Stack
 Frontend: Angular, HTML, CSS, Bootstrap
