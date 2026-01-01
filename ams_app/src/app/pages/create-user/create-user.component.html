@@ -1,0 +1,174 @@
+<div class="container">
+  <h2>{{ isEditMode ? "Edit User" : "Create User" }}</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <!-- Name field -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Name *</label>
+      <input id="name" formControlName="name" class="form-control" />
+    </div>
+
+    <!-- Email field -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email *</label>
+      <input
+        id="email"
+        formControlName="email"
+        class="form-control"
+        type="email"
+      />
+    </div>
+
+    <!-- Password field (always required in Create mode) -->
+    <div class="mb-3" *ngIf="!isEditMode || showPasswordField">
+      <label for="password" class="form-label">Password *</label>
+      <input
+        id="password"
+        formControlName="password"
+        class="form-control"
+        type="password"
+      />
+    </div>
+
+    <!-- Password toggle button (only in Edit mode) -->
+    <button
+      *ngIf="isEditMode"
+      type="button"
+      class="btn btn-link"
+      (click)="togglePasswordField()"
+    >
+      {{ showPasswordField ? "Cancel Password Change" : "Change Password" }}
+    </button>
+
+    <!-- Role dropdown -->
+    <div class="mb-3">
+      <label for="role" class="form-label">Role *</label>
+      <select
+        id="role"
+        formControlName="role"
+        class="form-select"
+        (change)="onRoleChange()"
+      >
+        <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+      </select>
+    </div>
+
+    <!-- Department dropdown (visible for Staff or Student) -->
+    <div *ngIf="showDepartmentDropdown" class="mb-3">
+      <label for="department" class="form-label">Department *</label>
+      <select id="department" formControlName="department" class="form-select">
+        <option *ngFor="let department of departments" [value]="department._id">
+          {{ department.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Class dropdown (visible for Students) -->
+    <div *ngIf="isStudent || isStaff" class="mb-3">
+      <label for="class" class="form-label">Class *</label>
+      <select id="class" formControlName="class" class="form-select">
+        <option *ngFor="let classItem of classes" [value]="classItem._id">
+          {{ classItem.className }}
+        </option>
+      </select>
+    </div>
+    <!-- Subject field (visible for Staff) -->
+    <div class="form-group mt-3" *ngIf="isStaff">
+      <label for="subject">Subject</label>
+      <select class="form-control" formControlName="subject">
+        <option value="">Select Subject</option>
+        <option *ngFor="let subject of subjects" [value]="subject._id">{{ subject.name }} - {{subject.code }}</option>
+      </select>
+    </div>
+    <!-- Date of birth field -->
+    <div class="mb-3">
+      <label for="dob" class="form-label">Date of Birth *</label>
+      <input id="dob" formControlName="dob" class="form-control" type="date" />
+    </div>
+
+    <!-- ID Card number (visible for Students) -->
+    <div class="mb-3" *ngIf="isStudent">
+      <label for="idCardId" class="form-label">Register Number</label>
+      <input id="idCardId" formControlName="idCardId" class="form-control" />
+    </div>
+
+    
+    <!-- <div *ngIf="isStaff" class="mb-3">
+      <label for="subject" class="form-label">Subject *</label>
+      <input id="subject" formControlName="subject" class="form-control" />
+    </div> -->
+    
+    <!-- File upload option -->
+    <div class="mb-3">
+      <label for="profilePhoto" class="form-label">Profile Photo *</label>
+      <input
+        id="profilePhoto"
+        type="file"
+        (change)="onFileChange($event)"
+        class="form-control"
+        accept="image/*"
+      />
+    </div>
+  <p>or</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 m-2" *ngIf="captureImage && !webcamImage">
+          <webcam
+            [trigger]="triggerObservable"
+            (imageCapture)="handleImage($event)"
+          ></webcam>
+          <button
+            type="button"
+            class="btn btn-primary mt-2"
+            (click)="triggerSnapshot()"
+          >
+            Capture Photo 
+          </button>
+        </div>
+
+        <!-- Preview captured image -->
+        <div class="col-md-6 m-2" *ngIf="isEditMode && webcamImage">
+          <h5>Preview:</h5>
+          <img [src]="webcamImage.imageAsDataUrl" class="img-thumbnail" />
+        </div>
+        <div class="col-md-6 m-2" *ngIf="!isEditMode && webcamImage">
+          <h5>Preview:</h5>
+          <img [src]="webcamImage.imageAsDataUrl" class="img-thumbnail" />
+        </div>
+        <div class="col-md-6 m-2" *ngIf="isEditMode && updateimage && !webcamImage">
+          <h5>Preview:</h5>
+          <img [src]="updateimage" class="img-thumbnail" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Webcam capture option -->
+    <button
+      type="button"
+      class="btn btn-secondary mb-3"
+      (click)="captureImage = !captureImage"
+    >
+      {{ captureImage ? "Close Webcam" : "Open Webcam" }}
+    </button>
+    <button
+      *ngIf="!updateimage && webcamImage"
+      type="button"
+      class="btn btn-secondary mb-3"
+      (click)="webcamImage = null"
+    >
+      Clear photo
+    </button>
+    <button
+      *ngIf="updateimage"
+      type="button"
+      class="btn btn-secondary mb-3"
+      (click)="updateimage = null"
+    >
+      Clear photo
+    </button>
+    <!-- Submit button -->
+     <br>
+    <button type="submit" class="btn btn-primary">
+      {{ isEditMode ? "Update" : "Create" }}
+    </button>
+  </form>
+</div>

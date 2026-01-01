@@ -1,0 +1,41 @@
+<div class="container">
+    <h2>{{ isEditMode ? 'Edit Class' : 'Add Class' }}</h2>
+    <form [formGroup]="classForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="className" class="form-label">Class Name</label>
+        <input id="className" formControlName="className" class="form-control" />
+      </div>
+      <div *ngIf="departments" class="mb-3">
+        <label for="department" class="form-label">Department</label>
+        <select id="department" formControlName="department" class="form-select">
+          <option *ngFor="let department of departments" [value]="department._id">{{ department.name }}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="year" class="form-label">Year</label>
+        <select id="year" formControlName="year" class="form-select">
+          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="section" class="form-label">Section</label>
+        <input id="section" formControlName="section" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="classTeacher" class="form-label">Class Teacher</label>
+        <input id="classTeacher" formControlName="classTeacher" class="form-control" />
+      </div>
+      <!-- <div class="mb-3">
+        <label for="lat" class="form-label">Latitude</label>
+        <input id="lat" formControlName="lat" type="number" class="form-control" />
+        <p><a target="_blank" href="https://www.google.com/maps?authuser=0">Here</a> you can find Latitude Longitude</p>
+        <button type="button" class="btn btn-secondary" (click)="getGeolocation()">Get current Geolocation</button>
+      </div>
+      <div class="mb-3">
+        <label for="lng" class="form-label">Longitude</label>
+        <input id="lng" formControlName="lng" type="number" class="form-control" />
+      </div> -->
+      <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update' : 'Create' }}</button>
+    </form>
+  </div>
+  

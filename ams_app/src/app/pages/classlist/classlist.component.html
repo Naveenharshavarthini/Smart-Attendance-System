@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Class List</h2>
+    <button [routerLink]="['/addclass']" routerLinkActive="router-link-active"  class="btn btn-primary">Add Class</button>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Year</th>
+          <th>Section</th>
+          <th>Class Teacher</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let class of classes; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ class.className }}</td>
+          <td>{{ class.department.name }}</td>
+          <td>{{ class.year }}</td>
+          <td>{{ class.section }}</td>
+          <td>{{ class.classTeacher }}</td>
+          <td>
+            <button (click)="editClass(class._id)" class="btn btn-warning">Update</button>
+            <button (click)="deleteClass(class._id)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

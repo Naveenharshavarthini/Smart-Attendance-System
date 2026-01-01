@@ -1,0 +1,12 @@
+<div class="alert-container position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+    <ngb-alert
+      *ngIf="alertMessage"
+      [type]="alertType"
+      (close)="clearAlert()"
+      [dismissible]="true">
+      {{ alertMessage }}
+    </ngb-alert>
+  </div>
+
+<router-outlet></router-outlet> 
+

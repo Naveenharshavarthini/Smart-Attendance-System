@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>Face Recognition Attendance</h2>
+  
+    <!-- Webcam -->
+     <div class="row">
+        <div *ngIf="!capturedImage?.src" class="col-lg-6">
+            <div  class="webcam-container">
+                <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+              </div>
+        </div>
+        <div *ngIf="capturedImage?.src" class="col-lg-6">
+            <img [src]="capturedImage.src" alt="">
+        </div>
+        <div *ngIf="uploadedImage?.src" class="col-lg-6">
+            <img [src]="uploadedImage.src" alt="">
+        </div>
+     </div>
+   
+  
+    <!-- File Upload -->
+    <input type="file" [(ngModel)]="imagepick" (change)="uploadImage($event)" accept="image/*" />
+  
+    <!-- Buttons -->
+    <button mat-raised-button color="primary" (click)="capture()">Capture Photo</button>
+    <button mat-raised-button color="primary" (click)="capturedImage = null; uploadedImage =null;imagepick = null">Clear</button>
+    <button mat-raised-button color="accent" (click)="compareFaces()">Compare & Mark Attendance</button>
+
+  
+    <p *ngIf="matchResult">{{ matchResult }}</p>
+  </div>
+  

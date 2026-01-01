@@ -1,0 +1,33 @@
+<div class="container my-4">
+    <h2 class="mb-4">{{ isEditMode ? 'Edit Subject' : 'Create Subject' }}</h2>
+  
+    <form [formGroup]="subjectForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Name:</label>
+        <input formControlName="name" type="text" class="form-control" />
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Code:</label>
+        <input formControlName="code" type="text" class="form-control" />
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Latitude:</label>
+        <input formControlName="latitude" type="number" class="form-control" />
+        <p><a target="_blank" href="https://www.google.com/maps?authuser=0">Here</a> you can find Latitude Longitude</p>
+        <button type="button" class="btn btn-secondary" (click)="getGeolocation()">Get current Geolocation</button>
+       </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Longitude:</label>
+        <input formControlName="longitude" type="number" class="form-control" />
+      </div>
+  
+      <button type="submit" class="btn btn-primary">
+        {{ isEditMode ? 'Update' : 'Create' }}
+      </button>
+      <a routerLink="/subjects" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+  </div>
+  

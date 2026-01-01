@@ -1,0 +1,45 @@
+
+   <div *ngIf="isalllistloaded" class="container">
+    <div class="col-md-4">
+        <div class="mb-3">
+            <label for="classId" class="form-label">Class:</label>
+            <select [(ngModel)]="timetable.classId" class="form-select">
+              <option value="" disabled>Select Class</option>
+              <option *ngFor="let class of classes" [value]="class._id">{{ class.className }}</option>
+            </select>
+          </div>
+    </div>
+      <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>Day</th>
+              <th *ngFor="let time of timeSlots">{{ time.lable }}</th>    
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let day of timetable.schedule; let i = index">
+              <td>{{ day.day }}</td>
+             
+              <td *ngFor="let slot of day.slots; let j = index">
+                <select  [(ngModel)]="slot.subject" class="form-select form-select-sm">
+                  <option value="" disabled>Select</option>
+                  <option *ngFor="let subject of subjects" [value]="subject._id">
+                    {{ subject.name }}
+                  </option>
+                </select>
+                <!-- <span *ngIf="slot.hour.vaule == '12-1'"> Lunch break </span> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <!-- For saving the timetable -->
+        <button class="btn btn-primary mt-3" (click)="isEditMode ? updateTimetable() : saveTimetable()">
+            {{ isEditMode ? 'Update Timetable' : 'Save Timetable' }}
+          </button>
+          
+     
+   </div>
+    
+
+  

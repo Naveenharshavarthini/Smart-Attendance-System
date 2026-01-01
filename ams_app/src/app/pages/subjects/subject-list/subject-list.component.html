@@ -1,0 +1,29 @@
+<div class="container my-4">
+    <h2 class="mb-4">Subject List</h2>
+    <a routerLink="/subjects/create" class="btn btn-success mb-3">Add Subject</a>
+  
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Code</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subject of subjects">
+          <td>{{ subject.name }}</td>
+          <td>{{ subject.code }}</td>
+          <td>{{ subject.latitude }}</td>
+          <td>{{ subject.longitude }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm me-2" (click)="onEdit(subject._id)">Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="onDelete(subject._id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

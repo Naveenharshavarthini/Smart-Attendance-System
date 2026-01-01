@@ -1,0 +1,71 @@
+<div class="container mt-4">
+    <h2>Add Attendance for the Week</h2>
+  
+    <!-- Navigation buttons for previous and next week -->
+    <div class="mb-3">
+      <button class="btn btn-secondary" (click)="previousWeek()">Previous Week</button>
+      <button class="btn btn-secondary" (click)="nextWeek()">Next Week</button>
+    </div>
+
+    <div id="videoContainer" style="width: 500px; margin-bottom: 20px; display: none;">
+      
+    </div>
+    <div *ngIf="isfaceload" >
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div><h4>
+        Face detection and Face matching in progress... 
+      </h4> 
+    </div>
+     
+ 
+ 
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th *ngFor="let hour of hourLabels">{{ hour }}</th>
+        </tr>
+      </thead>
+      <tbody   >
+        <tr *ngFor="let day of weekDays; let dayIndex = index">
+          <td>{{ day }} ({{ getDayDate(dayIndex) }})</td>
+          <td *ngFor="let hourControl of getHourControls(dayIndex); let hourIndex = index">
+            <div
+              class="form-check"
+              [ngClass]="{
+                'bg-light-green': getAttendanceStatus(dayIndex, hourIndex) === 'present',
+                'bg-light-red': getAttendanceStatus(dayIndex, hourIndex) === 'absent',
+                'bg-light-gray': getAttendanceStatus(dayIndex, hourIndex) === 'future',
+                'highlight-blue': getAttendanceStatus(dayIndex, hourIndex) === 'current'
+              }"
+              (click)="compareFaces(dayIndex, hourIndex)"
+             
+            ></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Clock-In Modal -->
+    <ng-template #clockInModal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Clock In</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <p>You're within the class area. You can clock in now.</p>
+        <p>You're assigned class subject for thos hour is <strong> {{this.timetable?.schedule[this.tabledayIndex]?.slots[this.tablehourIndex]?.subject?.name}}
+          - {{this.timetable?.schedule[this.tabledayIndex]?.slots[this.tablehourIndex]?.subject?.code}}</strong>
+        </p>
+        <p>Step 1</p>
+        <button class="btn btn-primary" (click)="getCurrentLocation()">Get Current Location</button>
+        <p *ngIf="!canSubmit && locationError" class="text-danger">{{ locationError }}</p>
+        <p *ngIf="canSubmit" class="text-success">{{ locationError }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="submitClockIn(modal)" [disabled]="!canSubmit">Clock-in</button>
+      </div>
+    </ng-template>
+  </div>
+  

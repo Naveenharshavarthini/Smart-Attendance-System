@@ -1,0 +1,35 @@
+<div class="container">
+    <h2>User List</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Department</th>
+          <th>Class</th>
+          <th>Date of Birth</th>
+          <th>ID Card Number</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.department?.name || '-' }}</td>
+          <td>{{ user.class?.className || '-' }}</td>
+          <td>{{ user.dob | date:'yyyy-MM-dd' }}</td>
+          <td>{{ user.idCardId || '-' }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" (click)="editUser(user._id)">Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteUser(user._id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

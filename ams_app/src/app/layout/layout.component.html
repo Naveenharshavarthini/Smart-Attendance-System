@@ -1,0 +1,112 @@
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">Menu</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                        </a>
+                    </li>
+                    <li *ngIf="user?.role != 'Student'">
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="bi bi-person-fill"></i> <span class="ms-1 d-none d-sm-inline">User Management</span> </a>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <!-- <li class="w-100">
+                                <a [routerLink]="['/login']" routerLinkActive="router-link-active"  class="nav-link px-0"> <span class="d-none d-sm-inline">login</span> 1 </a>
+                            </li> -->
+                            <li>
+                                <a [routerLink]="['/create-user']" routerLinkActive="router-link-active"  class="nav-link px-0"> <span class="d-none d-sm-inline">Create User</span>  </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/user-list']" routerLinkActive="router-link-active"  class="nav-link px-0"> <span class="d-none d-sm-inline">Users list</span>  </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Department Management</span></a>
+                    </li> -->
+                    <li *ngIf="user?.role == 'admin'" > 
+                        <a href="#submenu21" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                           <i class="bi bi-building-fill"></i> <span class="ms-1 d-none d-sm-inline">Subject Management</span></a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu21" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a [routerLink]="['/subjects/create']" class="nav-link px-0"> <span class="d-none d-sm-inline">Add Subject</span> </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/subjects']" routerLinkActive="router-link-active"  class="nav-link px-0"> <span class="d-none d-sm-inline">Subjects list</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li *ngIf="user?.role == 'admin'" > 
+                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                           <i class="bi bi-building-fill"></i> <span class="ms-1 d-none d-sm-inline">Department Management</span></a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a [routerLink]="['/adddep']" class="nav-link px-0"> <span class="d-none d-sm-inline">Add department</span> </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/departments']" routerLinkActive="router-link-active"  class="nav-link px-0"> <span class="d-none d-sm-inline">departments list</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a *ngIf="user?.role == 'admin'" href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="bi bi-backpack4-fill"></i> <span class="ms-1 d-none d-sm-inline">Class Management</span> </a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a [routerLink]="['/addclass']" routerLinkActive="router-link-active"  class="nav-link px-0"> <span class="d-none d-sm-inline">Add Class</span> </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/classes']" class="nav-link px-0"> <span class="d-none d-sm-inline">Class list</span> </a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+                    <li>
+                        <a *ngIf="user?.role == 'admin'" href="#submenu31" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="bi bi-backpack4-fill"></i> <span class="ms-1 d-none d-sm-inline">TimeTable Management</span> </a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu31" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a [routerLink]="['/timetable/create']" routerLinkActive="router-link-active"  class="nav-link px-0"> <span class="d-none d-sm-inline">Create Class Timetable</span> </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/timetable-list']" class="nav-link px-0"> <span class="d-none d-sm-inline">Class Timetable list</span> </a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="bi bi-calendar-check-fill"></i> <span class="ms-1 d-none d-sm-inline">Attendance management</span> </a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu5" data-bs-parent="#menu">
+                            <li *ngIf="user?.role == 'Student'" class="w-100">
+                                <a [routerLink]="['/addattendance']" routerLinkActive="router-link-active"  class="nav-link px-0"> <span class="d-none d-sm-inline">Add Attendance</span> </a>
+                            </li>
+                            <li class="w-100">
+                                <a [routerLink]="['/attendance-report']" routerLinkActive="router-link-active"  class="nav-link px-0"> <span class="d-none d-sm-inline">Attendance Report</span> </a>
+                            </li>
+                          
+                           
+                        </ul>
+                    </li>
+                </ul>
+                <hr>
+                <div class="dropdown pb-4">
+                    <a (click)="signout()" class="d-flex align-items-center text-white text-decoration-none " id="dropdownUser1"  aria-expanded="false">
+                        <img src="data:image/jpeg;base64,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" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                        <span class="d-none d-sm-inline mx-1">Sign out</span>
+                    </a>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col py-3">
+            <router-outlet></router-outlet> 
+        </div>
+    </div>
+  </div>

@@ -1,0 +1,46 @@
+<div class="container">
+    <h2>Monthly Attendance Report</h2>
+  
+    <!-- Dropdowns for Year and Month -->
+    <div class="filters">
+      <label for="year">Year:</label>
+      <select id="year" [(ngModel)]="selectedYear" (change)="updateReport()">
+        <option *ngFor="let year of availableYears" [value]="year">{{ year }}</option>
+      </select>
+  
+      <label for="month">Month:</label>
+      <select id="month" [(ngModel)]="selectedMonth" (change)="updateReport()">
+        <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
+      </select>
+    </div>
+  
+    <!-- Attendance Table -->
+    <table class="table table-success  table-bordered">
+        <thead class="table-dark">
+        <tr >
+          <th>Subject</th>
+          <th>Total Classes</th>
+          <th>Conducted</th>
+          <th>Attended</th>
+          <th>Attendance %</th>
+          <th>Remaining</th>
+          <th>Predicted %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of attendanceData" 
+        [ngClass]="{
+            'table-active': userRole == 'Staff' && record.subjectId === userSubjectId,
+        }">
+          <td>{{ record.subject }}</td>
+          <td>{{ record.totalClasses }}</td>
+          <td>{{ record.conducted }}</td>
+          <td>{{ record.attended }}</td>
+          <td>{{ record.attendancePercentage }}%</td>
+          <td>{{ record.remaining }}</td>
+          <td>{{ record.predictedPercentage }}%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

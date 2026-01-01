@@ -1,0 +1,11 @@
+<div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="https://upload.wikimedia.org/wikipedia/en/f/fe/Srmseal.png" alt="" width="100" height="100">
+    <h2 class="display-4 fw-bold">Welcome to Smart Attendance System</h2>
+    <div class="col-lg-8 mx-auto">
+      <p class="lead mb-4">A location-based smart attendance system uses GPS to verify a user’s presence within a designated area before allowing them to mark attendance. By setting predefined coordinates, the system confirms if users are within range, like a classroom or office, enhancing accuracy and preventing false attendance. This automated process restricts check-ins to specific locations and time slots, ensuring records are both location-verified and timely. Real-time reporting provides instant access to attendance data, making it ideal for schools and workplaces focused on reliable, location-based attendance tracking.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3" [routerLink]="['/addattendance']" routerLinkActive="router-link-active"  fdprocessedid="8db5k">Mark Attendance</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4" (click)="signout()"  fdprocessedid="4n43l">Signout</button>
+      </div>
+    </div>
+  </div>

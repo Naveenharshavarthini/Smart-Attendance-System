@@ -1,0 +1,57 @@
+<!-- src/app/attendance-report/attendance-report.component.html -->
+<div class="container mt-5">
+    <h2>Attendance Report</h2>
+  <div *ngIf="user && user?.role == 'admin'" class="row">
+    <div class="col-md-4 mb-3">
+      <select class="form-select mb-3" [(ngModel)]="selectedClass" (change)="filterAttendance()">
+        <option value="">Select Class</option>
+        <option *ngFor="let cls of classes" [value]="cls._id">{{ cls.className }}</option>
+      </select>
+    </div>
+    <div class="col-md-4 mb-3">
+      <select class="form-select mb-3" [(ngModel)]="selectedDepartment" (change)="filterAttendance()">
+        <option value="">Select Department</option>
+        <option *ngFor="let dept of departments" [value]="dept._id">{{ dept.name }}</option>
+      </select>
+      </div>
+      <div class="col-md-4 mb-3">
+        <select class="form-select mb-3" [(ngModel)]="selectedSubject" (change)="filterAttendance()">
+          <option value="">Select Subject</option>
+          <option *ngFor="let subject of subjects" [value]="subject._id">{{ subject.name }}</option>
+        </select>
+      </div>
+      <!-- <div class="col-md-4 mb-3">
+      <select class="form-select mb-3" [(ngModel)]="selectedStaff" (change)="filterAttendance()">
+        <option value="">Select Staff</option>
+        <option *ngFor="let staffMember of staffs" [value]="staffMember._id">{{ staffMember.name }}</option>
+      </select>
+    </div> -->
+  </div>
+ <div *ngIf="user" class="row">
+  <p>Name: <strong> {{user?.name}}</strong>, Role: <strong> {{user?.role}}</strong>, Email:<strong> {{(user?.email || '-') }}</strong></p>
+ </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Class</th>
+          <th>Total Days Present</th>
+          <th>Register ID</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="filteredAttendanceList.length">
+        <tr *ngFor="let attendance of filteredAttendanceList">
+          <td>{{ attendance.name }}</td>
+          <td *ngIf="classes.length" >{{ getclass(attendance.class)}}</td>
+          <td>{{ attendance.totalPresent}}</td>
+          <td>{{ attendance.idCard }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="viewMore(attendance.userId)">View attendance table</button>
+            <button class="btn btn-warning"  [routerLink]="['/report', attendance.class, attendance.userId]" >View Report</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
