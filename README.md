@@ -22,6 +22,7 @@ Backend: Node.js with TypeScript, TensorFlow/TensorFlow.js SDK
 ​IDE & Tools: Visual Studio Code, Chrome/Safari browser
 
 ### Project Structure
+```
 Smart-Attendance-System
 │
 ├── ams_app              # Frontend (Angular)
@@ -37,7 +38,7 @@ Smart-Attendance-System
 │
 ├── README.md
 └── .gitignore
-
+```
 ## Installation and Setup
 
 1.Clone the Repository
